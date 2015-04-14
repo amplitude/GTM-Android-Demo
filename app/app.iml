@@ -85,7 +85,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="amplitude-android-1.6.1-with-dependencies" level="project" />
+    <orderEntry type="library" exported="" name="android-sdk-1.6.1" level="project" />
+    <orderEntry type="library" exported="" name="okio-1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-2.2.0" level="project" />
   </component>
 </module>
 
