@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.lecz.android.tiltmazes"
+        compileOptions {
+        }
+
+        testApplicationId "com.lecz.android.tiltmazes.tests"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    dependencies {
+//        compile 'com.amplitude:android-sdk:1.6.1'
+        compile files('libs/amplitude-android-1.6.1-with-dependencies.jar')
+    }
+}
