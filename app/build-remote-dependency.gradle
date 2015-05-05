@@ -18,8 +18,12 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+        }
     }
     dependencies {
+        compile 'com.google.android.gms:play-services:7.3.0'
         compile 'com.amplitude:android-sdk:' + amplitudeVersion
     }
 }
