@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 ##
 # Test that the amplitude jars compile against a real project.
