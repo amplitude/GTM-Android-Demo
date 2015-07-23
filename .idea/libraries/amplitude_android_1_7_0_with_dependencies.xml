@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="amplitude-android-1.7.0-with-dependencies">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/amplitude-android-1.7.0-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
