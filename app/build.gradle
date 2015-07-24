@@ -1,7 +1,10 @@
-
 if (amplitudeUseLocal) {
     apply from: 'build-local-dependency.gradle'
-}
-else {
+} else {
     apply from: 'build-remote-dependency.gradle'
+}
+android {
+    compileSdkVersion 9
+}
+dependencies {
 }
