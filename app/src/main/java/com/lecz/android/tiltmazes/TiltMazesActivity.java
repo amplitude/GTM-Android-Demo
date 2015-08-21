@@ -80,7 +80,7 @@ public class TiltMazesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Amplitude.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6");
+        Amplitude.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6").enableForegroundTracking(getApplication());
 
         final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TiltMazes");
@@ -281,8 +281,6 @@ public class TiltMazesActivity extends Activity {
     protected void onPause() {
         super.onPause();
 
-        Amplitude.getInstance().endSession();
-
         mGameEngine.unregisterListener();
         mWakeLock.release();
     }
@@ -290,8 +288,6 @@ public class TiltMazesActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        Amplitude.getInstance().startSession();
 
         mGameEngine.registerListener();
         mWakeLock.acquire();

@@ -31,8 +31,6 @@
 
 package com.lecz.android.tiltmazes;
 
-import android.os.NetworkOnMainThreadException;
-
 import java.util.List;
 import java.util.LinkedList;
 import static com.lecz.android.tiltmazes.Wall.*;
