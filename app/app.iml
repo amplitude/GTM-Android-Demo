@@ -127,10 +127,10 @@
     <orderEntry type="library" exported="" name="play-services-ads-7.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-identity-7.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-wearable-7.3.0" level="project" />
+    <orderEntry type="library" exported="" name="amplitude-android-2.0.1-with-dependencies" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-nearby-7.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-safetynet-7.3.0" level="project" />
-    <orderEntry type="library" exported="" name="amplitude-android-2.0.0-with-dependencies" level="project" />
     <orderEntry type="library" exported="" name="play-services-plus-7.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-7.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-base-7.3.0" level="project" />
