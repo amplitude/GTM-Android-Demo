@@ -44,6 +44,7 @@ import android.os.Vibrator;
 import android.widget.TextView;
 
 import com.amplitude.api.Amplitude;
+import com.amplitude.api.Identify;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -190,6 +191,10 @@ public class GameEngine {
                         } catch (JSONException exception) { }
 
                         Amplitude.getInstance().logEvent("Maze Completed", eventProperties);
+                        Amplitude.getInstance().identify(new Identify().add("total steps", mStepCount));
+                        Amplitude.getInstance().identify(new Identify().add("mazes completed", 1));
+                        Long tsLong = System.currentTimeMillis()/1000;
+                        Amplitude.getInstance().identify(new Identify().setOnce("first maze completed time", tsLong));
 
                         if (mDB.unsolvedMazes().getCount() == 0) {
                             mAllMazesSolvedDialog.setMessage(
