@@ -1,2 +1,2 @@
-ext.amplitudeVersion = '2.1.0'
-ext.amplitudeUseLocal = true
+ext.amplitudeVersion = '2.2.0'
+ext.amplitudeUseLocal = false

@@ -38,6 +38,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -46,8 +47,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.amplitude.api.Amplitude;
 
@@ -82,7 +83,7 @@ public class TiltMazesActivity extends Activity {
 
         Amplitude.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6");
         Amplitude.getInstance().enableForegroundTracking(getApplication()).trackSessionEvents(true);
-
+        Amplitude.getInstance().setLogLevel(Log.VERBOSE);
 
         final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TiltMazes");
