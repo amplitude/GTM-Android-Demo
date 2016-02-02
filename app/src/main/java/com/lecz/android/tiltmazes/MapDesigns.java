@@ -31,9 +31,13 @@
 
 package com.lecz.android.tiltmazes;
 
-import java.util.List;
 import java.util.LinkedList;
-import static com.lecz.android.tiltmazes.Wall.*;
+import java.util.List;
+
+import static com.lecz.android.tiltmazes.Wall.BOTTOM;
+import static com.lecz.android.tiltmazes.Wall.LEFT;
+import static com.lecz.android.tiltmazes.Wall.RIGHT;
+import static com.lecz.android.tiltmazes.Wall.TOP;
 
 public final class MapDesigns {
 
@@ -41,46 +45,46 @@ public final class MapDesigns {
 
     static {
         designList.add(new MapDesign(
-            "Small",
-            5, 5,
-            new int[][] {
-                    {LEFT|TOP, TOP, TOP|RIGHT, TOP, TOP|RIGHT},
-                    {LEFT, 0, 0, RIGHT, RIGHT},
-                    {LEFT|BOTTOM, LEFT, BOTTOM|RIGHT, 0, RIGHT},
-                    {LEFT, BOTTOM, LEFT, 0, RIGHT},
-                    {LEFT|BOTTOM, BOTTOM, BOTTOM, BOTTOM, BOTTOM|RIGHT|TOP}
-            },
-            new int[][] {
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 1}
-            },
-            0, 0
+                "Small",
+                5, 5,
+                new int[][]{
+                        {LEFT | TOP, TOP, TOP | RIGHT, TOP, TOP | RIGHT},
+                        {LEFT, 0, 0, RIGHT, RIGHT},
+                        {LEFT | BOTTOM, LEFT, BOTTOM | RIGHT, 0, RIGHT},
+                        {LEFT, BOTTOM, LEFT, 0, RIGHT},
+                        {LEFT | BOTTOM, BOTTOM, BOTTOM, BOTTOM, BOTTOM | RIGHT | TOP}
+                },
+                new int[][]{
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1}
+                },
+                0, 0
         ));
         designList.add(new MapDesign(
-            "Medium",
-            7, 7,
-            new int[][] {
-                    {LEFT|TOP, TOP, TOP, TOP, TOP|RIGHT, TOP, TOP|RIGHT},
-                    {LEFT, 0, 0, 0, 0, RIGHT, RIGHT},
-                    {LEFT, 0, TOP|LEFT|RIGHT, 0, 0, RIGHT, RIGHT},
-                    {LEFT, LEFT, 0, 0, 0, RIGHT, RIGHT},
-                    {LEFT|BOTTOM, 0, RIGHT, 0, BOTTOM, 0, RIGHT},
-                    {LEFT, TOP, 0, 0, 0, 0, RIGHT},
-                    {LEFT|BOTTOM, RIGHT|BOTTOM, BOTTOM, BOTTOM, BOTTOM, LEFT|BOTTOM, BOTTOM|RIGHT|TOP}
-            },
-            new int[][] {
-                    {0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 1, 0, 1, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0}
-            },
-            0, 0
+                "Medium",
+                7, 7,
+                new int[][]{
+                        {LEFT | TOP, TOP, TOP, TOP, TOP | RIGHT, TOP, TOP | RIGHT},
+                        {LEFT, 0, 0, 0, 0, RIGHT, RIGHT},
+                        {LEFT, 0, TOP | LEFT | RIGHT, 0, 0, RIGHT, RIGHT},
+                        {LEFT, LEFT, 0, 0, 0, RIGHT, RIGHT},
+                        {LEFT | BOTTOM, 0, RIGHT, 0, BOTTOM, 0, RIGHT},
+                        {LEFT, TOP, 0, 0, 0, 0, RIGHT},
+                        {LEFT | BOTTOM, RIGHT | BOTTOM, BOTTOM, BOTTOM, BOTTOM, LEFT | BOTTOM, BOTTOM | RIGHT | TOP}
+                },
+                new int[][]{
+                        {0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 1, 0, 1, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0}
+                },
+                0, 0
         ));
     }
 

@@ -35,47 +35,47 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="top|center_horizontal"
     android:layout_width="wrap_content"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/about_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/tiltmazes_icon"
-        android:id="@+id/about_icon"
-        android:paddingTop="10dip"
         android:layout_weight="1.0"
+        android:paddingTop="10dip"
+        android:src="@drawable/tiltmazes_icon"
         >
     </ImageView>
 
     <TextView
         android:id="@+id/about_text"
-        android:text="@string/about_text"
         android:layout_width="wrap_content"
-        android:layout_margin="5dip"
-        android:paddingTop="5dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:gravity="top|center_horizontal"
-        android:autoLink="web"
-        android:layout_weight="100.0"
         android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:layout_weight="100.0"
+        android:autoLink="web"
         android:editable="false"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="25dip"
+        android:gravity="top|center_horizontal"
         android:paddingBottom="5dip"
-           android:scrollbars="vertical"
-    />
+        android:paddingTop="5dip"
+        android:scrollbars="vertical"
+        android:text="@string/about_text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
 
     <Button
         android:id="@+id/about_ok_button"
-        android:layout_height="wrap_content"
-        android:text="OK"
         android:layout_width="150px"
-        android:layout_weight="1.0"
-        android:layout_marginTop="5dip"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="5dip"
+        android:layout_marginTop="5dip"
+        android:layout_weight="1.0"
+        android:text="OK"
         >
     </Button>
 </LinearLayout>

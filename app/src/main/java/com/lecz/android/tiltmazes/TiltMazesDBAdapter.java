@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class TiltMazesDBAdapter {
     private static final String DATABASE_NAME = "tiltmazes.db";
@@ -23,9 +23,9 @@ public class TiltMazesDBAdapter {
     public static final int SOLUTION_STEPS_COLUMN = 2;
 
     public static final String[] COLUMNS = {
-        KEY_ID,
-        KEY_NAME,
-        KEY_SOLUTION_STEPS,
+            KEY_ID,
+            KEY_NAME,
+            KEY_SOLUTION_STEPS,
     };
 
     private SQLiteDatabase mDB;
@@ -50,12 +50,12 @@ public class TiltMazesDBAdapter {
         values.put(KEY_SOLUTION_STEPS, solution_steps);
 
         mDB.update(
-            DATABASE_TABLE,
-            values,
-            KEY_ID + " = ? AND ("
-            + KEY_SOLUTION_STEPS + " = ? OR "
-            + KEY_SOLUTION_STEPS + " > ?)",
-            new String[]{"" + id, "0", "" + solution_steps}
+                DATABASE_TABLE,
+                values,
+                KEY_ID + " = ? AND ("
+                        + KEY_SOLUTION_STEPS + " = ? OR "
+                        + KEY_SOLUTION_STEPS + " > ?)",
+                new String[]{"" + id, "0", "" + solution_steps}
         );
     }
 
@@ -68,37 +68,37 @@ public class TiltMazesDBAdapter {
                 /*groupBy:*/ null,
                 /*having:*/ null,
                 /*orderBy:*/ KEY_ID
-            );
+        );
     }
 
     public Cursor unsolvedMazes() {
         return mDB.query(
                 DATABASE_TABLE,
-                /*:columns:*/ new String[] {KEY_ID},
+                /*:columns:*/ new String[]{KEY_ID},
                 /*selection:*/ KEY_SOLUTION_STEPS + " = ?",
-                /*selectionArgs:*/ new String[] {"0"},
+                /*selectionArgs:*/ new String[]{"0"},
                 /*groupBy:*/ null,
                 /*having:*/ null,
                 /*orderBy:*/ KEY_ID
-            );
+        );
     }
 
     public Cursor solvedMazes() {
         return mDB.query(
                 DATABASE_TABLE,
-                /*:columns:*/ new String[] {KEY_ID},
+                /*:columns:*/ new String[]{KEY_ID},
                 /*selection:*/ KEY_SOLUTION_STEPS + " <> ?",
-                /*selectionArgs:*/ new String[] {"0"},
+                /*selectionArgs:*/ new String[]{"0"},
                 /*groupBy:*/ null,
                 /*having:*/ null,
                 /*orderBy:*/ KEY_ID
-            );
+        );
     }
 
     public int getFirstUnsolved() {
         Cursor c = unsolvedMazes();
 
-        if (! c.moveToFirst()) {
+        if (!c.moveToFirst()) {
             // There are no more unsolved mazes
             return 0;
         }
@@ -108,15 +108,15 @@ public class TiltMazesDBAdapter {
 
     private static class TiltMazesDBOpenHelper extends SQLiteOpenHelper {
         private static final String DATABASE_CREATE =
-            "create table " + DATABASE_TABLE + " ("
-            + KEY_ID + " integer primary key autoincrement, "
-            + KEY_NAME + " text not null, "
-            + KEY_SOLUTION_STEPS + " integer"
-            + ");";
+                "create table " + DATABASE_TABLE + " ("
+                        + KEY_ID + " integer primary key autoincrement, "
+                        + KEY_NAME + " text not null, "
+                        + KEY_SOLUTION_STEPS + " integer"
+                        + ");";
 
 
         public TiltMazesDBOpenHelper(Context context, String name,
-                CursorFactory factory, int version) {
+                                     CursorFactory factory, int version) {
             super(context, name, factory, version);
         }
 
@@ -138,8 +138,7 @@ public class TiltMazesDBAdapter {
                 }
 
                 db.setTransactionSuccessful();
-            }
-            finally {
+            } finally {
                 db.endTransaction();
             }
         }

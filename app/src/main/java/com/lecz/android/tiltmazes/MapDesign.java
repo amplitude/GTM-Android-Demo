@@ -43,11 +43,11 @@ public class MapDesign {
     private int mGoalCount = 0;
 
     public MapDesign(String name,
-            int sizeX, int sizeY,
-            int[][] walls,
-            int[][] goals,
-            int initialPositionX,
-            int initialPositionY) {
+                     int sizeX, int sizeY,
+                     int[][] walls,
+                     int[][] goals,
+                     int initialPositionX,
+                     int initialPositionY) {
         mName = name;
         mSizeX = sizeX;
         mSizeY = sizeY;

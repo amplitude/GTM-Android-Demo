@@ -34,21 +34,21 @@
 -->
 
 <resources>
-<string name="menu_restart">Restart</string>
-<string name="menu_map_prev">Previous</string>
-<string name="menu_map_next">Next</string>
-<string name="menu_select_maze">Select maze</string>
-<string name="menu_sensor">Sensor</string>
-<string name="menu_about">About</string>
+    <string name="menu_restart">Restart</string>
+    <string name="menu_map_prev">Previous</string>
+    <string name="menu_map_next">Next</string>
+    <string name="menu_select_maze">Select maze</string>
+    <string name="menu_sensor">Sensor</string>
+    <string name="menu_about">About</string>
 
-<string name="select_maze_title">TiltMazes - Select maze</string>
+    <string name="select_maze_title">TiltMazes - Select maze</string>
 
-<string name="about_text"><b>Amplitude Demo</b>\n
-The challenge is to guide the ball around the tray and collect all the squares.
-Tilt the phone to start the ball rolling.\n
-The ball rolls in a straight line until it hits a wall, you can then tilt again.
-</string>
+    <string name="about_text"><b>Amplitude Demo</b>\n
+    The challenge is to guide the ball around the tray and collect all the squares.
+    Tilt the phone to start the ball rolling.\n
+    The ball rolls in a straight line until it hits a wall, you can then tilt again.
+    </string>
 
-<string name="maze_label">Maze:</string>
+    <string name="maze_label">Maze:</string>
 </resources>
 
