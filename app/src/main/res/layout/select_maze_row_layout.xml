@@ -59,7 +59,7 @@
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
         android:paddingTop="10dip"
-        android:textSize="16px"
+        android:textSize="16dp"
         android:textStyle="bold"
         />
 
@@ -73,7 +73,7 @@
         android:paddingLeft="10dip"
         android:paddingRight="20dip"
         android:paddingTop="10dip"
-        android:textSize="12px"
+        android:textSize="12dp"
         />
 
 </LinearLayout>
