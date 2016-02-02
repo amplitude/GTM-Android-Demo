@@ -16,6 +16,3 @@ allprojects {
         }
     }
 }
-
-
-apply from: 'config.gradle'
