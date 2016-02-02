@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services:7.3.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
     if (amplitudeUseLocal.toBoolean()) {
         compile files('libs/amplitude-android-' + amplitudeVersion + '-with-dependencies.jar')
     } else {
