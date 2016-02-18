@@ -1,10 +1,29 @@
-if (amplitudeUseLocal) {
-    apply from: 'build-local-dependency.gradle'
-} else {
-    apply from: 'build-remote-dependency.gradle'
-}
+apply plugin: 'com.android.application'
+
 android {
-    compileSdkVersion 9
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.lecz.android.tiltmazes"
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 3
+        versionName "1.2"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
+
 dependencies {
+    compile 'com.google.android.gms:play-services:8.4.0'
+    if (amplitudeUseLocal.toBoolean()) {
+        compile files('libs/amplitude-android-' + amplitudeVersion + '-with-dependencies.jar')
+    } else {
+        compile 'com.amplitude:android-sdk:' + amplitudeVersion
+    }
 }

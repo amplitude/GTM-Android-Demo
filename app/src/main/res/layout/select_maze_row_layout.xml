@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--
+<!--
 /*
  * Copyright (c) 2009, Balazs Lecz <leczbalazs@gmail.com>
  * Copyright (c) 2015, Amplitude Mobile Analytics
@@ -33,43 +33,47 @@
  */
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:orientation="horizontal">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <ImageView android:id="@+id/maze_solved_tick"
-         android:paddingTop="10dip"
-         android:paddingBottom="15dip"
-         android:paddingLeft="5dip"
-         android:paddingRight="5dip"
+    <ImageView
+        android:id="@+id/maze_solved_tick"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dip"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
+        android:paddingTop="10dip">
     </ImageView>
 
-     <TextView android:id="@+id/maze_name"
-         android:textSize="16px"
-         android:textStyle="bold"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="6.0"
-         android:paddingTop="10dip"
-         android:paddingBottom="15dip"
-         android:paddingLeft="5dip"
-         android:paddingRight="5dip"
-         android:gravity="left"
-         />
+    <TextView
+        android:id="@+id/maze_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="6.0"
+        android:gravity="left"
+        android:paddingBottom="15dip"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
+        android:paddingTop="10dip"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        />
 
-     <TextView android:id="@+id/maze_solution_steps"
-         android:textSize="12px"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="1.0"
-         android:paddingTop="10dip"
-         android:paddingBottom="15dip"
-         android:paddingLeft="10dip"
-         android:paddingRight="20dip"
-         android:gravity="right"
-         />
+    <TextView
+        android:id="@+id/maze_solution_steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:gravity="right"
+        android:paddingBottom="15dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="20dip"
+        android:paddingTop="10dip"
+        android:textSize="12dp"
+        />
 
 </LinearLayout>

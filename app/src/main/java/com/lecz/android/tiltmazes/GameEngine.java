@@ -84,7 +84,7 @@ public class GameEngine {
     private final SensorListener mSensorAccelerometer = new SensorListener() {
 
         public void onSensorChanged(int sensor, float[] values) {
-            if (! mSensorEnabled) return;
+            if (!mSensorEnabled) return;
 
             mAccelX = values[0];
             mAccelY = values[1];
@@ -94,15 +94,14 @@ public class GameEngine {
             if (Math.abs(mAccelX) > Math.abs(mAccelY)) {
                 if (mAccelX < -ACCEL_THRESHOLD) mCommandedRollDirection = Direction.LEFT;
                 // FIXME(leczbalazs) elseif
-                if (mAccelX >  ACCEL_THRESHOLD) mCommandedRollDirection = Direction.RIGHT;
-            }
-            else {
+                if (mAccelX > ACCEL_THRESHOLD) mCommandedRollDirection = Direction.RIGHT;
+            } else {
                 if (mAccelY < -ACCEL_THRESHOLD) mCommandedRollDirection = Direction.DOWN;
                 // FIXME(leczbalazs) elseif
-                if (mAccelY >  ACCEL_THRESHOLD) mCommandedRollDirection = Direction.UP;
+                if (mAccelY > ACCEL_THRESHOLD) mCommandedRollDirection = Direction.UP;
             }
 
-            if (mCommandedRollDirection != Direction.NONE && ! mBall.isRolling()) {
+            if (mCommandedRollDirection != Direction.NONE && !mBall.isRolling()) {
                 rollBall(mCommandedRollDirection);
             }
         }
@@ -134,113 +133,113 @@ public class GameEngine {
 
         // Congratulations dialog
         mMazeSolvedDialog = new AlertDialog.Builder(context)
-            .setCancelable(true)
-            .setIcon(android.R.drawable.ic_dialog_info)
-            .setTitle("Congratulations!")
-            .setPositiveButton("Go to next maze!", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
+                .setCancelable(true)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setTitle("Congratulations!")
+                .setPositiveButton("Go to next maze!", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.cancel();
                         sendEmptyMessage(Messages.MSG_MAP_NEXT);
                     }
                 })
-            .create();
+                .create();
 
         // Final congratulations dialog
         mAllMazesSolvedDialog = new AlertDialog.Builder(context)
-            .setCancelable(true)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .setTitle("Congratulations!")
-            .setPositiveButton("OK!", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
+                .setCancelable(true)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Congratulations!")
+                .setPositiveButton("OK!", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.cancel();
                         sendEmptyMessage(Messages.MSG_MAP_NEXT);
                     }
                 })
-            .create();
+                .create();
 
         // Create message handler
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
-                case Messages.MSG_INVALIDATE:
-                    mMazeView.invalidate();
-                    return;
+                    case Messages.MSG_INVALIDATE:
+                        mMazeView.invalidate();
+                        return;
 
-                case Messages.MSG_REACHED_GOAL:
-                    mRemainingGoalsLabel.setText("" + mMap.getGoalCount());
-                    mRemainingGoalsLabel.invalidate();
-                    vibrate(100);
+                    case Messages.MSG_REACHED_GOAL:
+                        mRemainingGoalsLabel.setText("" + mMap.getGoalCount());
+                        mRemainingGoalsLabel.invalidate();
+                        vibrate(100);
 
-                    if (mMap.getGoalCount() == 0) {
-                        // Solved!
-                        mDB.updateMaze(mCurrentMap, mStepCount);
+                        if (mMap.getGoalCount() == 0) {
+                            // Solved!
+                            mDB.updateMaze(mCurrentMap, mStepCount);
 
-                        // Update the user properties with number of mazes completed.
-                        JSONObject userProperties = new JSONObject();
-                        try {
-                            userProperties.put("Mazes Completed", mDB.solvedMazes().getCount());
-                        } catch (JSONException exception) { }
-                        Amplitude.getInstance().setUserProperties(userProperties);
+                            // Update the user properties with number of mazes completed.
+                            JSONObject userProperties = new JSONObject();
+                            try {
+                                userProperties.put("Mazes Completed", mDB.solvedMazes().getCount());
+                            } catch (JSONException exception) {
+                            }
+                            Amplitude.getInstance().setUserProperties(userProperties);
 
-                        // Track the maze completion in amplitude
-                        JSONObject eventProperties = new JSONObject();
-                        try {
-                            eventProperties.put("Maze", mMap.getName());
-                            eventProperties.put("Steps", mStepCount);
-                        } catch (JSONException exception) { }
+                            // Track the maze completion in amplitude
+                            JSONObject eventProperties = new JSONObject();
+                            try {
+                                eventProperties.put("Maze", mMap.getName());
+                                eventProperties.put("Steps", mStepCount);
+                            } catch (JSONException exception) {
+                            }
 
-                        Amplitude.getInstance().logEvent("Maze Completed", eventProperties);
-                        Amplitude.getInstance().identify(new Identify().add("total steps", mStepCount));
-                        Amplitude.getInstance().identify(new Identify().add("mazes completed", 1));
-                        Long tsLong = System.currentTimeMillis()/1000;
-                        Amplitude.getInstance().identify(new Identify().setOnce("first maze completed time", tsLong));
+                            Amplitude.getInstance().logEvent("Maze Completed", eventProperties);
+                            Amplitude.getInstance().identify(new Identify().add("total steps", mStepCount));
+                            Amplitude.getInstance().identify(new Identify().add("mazes completed", 1));
+                            Long tsLong = System.currentTimeMillis() / 1000;
+                            Amplitude.getInstance().identify(new Identify().setOnce("first maze completed time", tsLong));
 
-                        if (mDB.unsolvedMazes().getCount() == 0) {
-                            mAllMazesSolvedDialog.setMessage(
-                                    "Mad props!\nYou have solved all the mazes!\n" +
-                                    "Now go back and try to solve them in fewer steps! :)");
-                            mAllMazesSolvedDialog.show();
-                        }
-                        else {
-                            mMazeSolvedDialog.setMessage(
-                                    "You have solved maze "
-                                    + mMap.getName()
-                                    + " in " + mStepCount + " steps."
+                            if (mDB.unsolvedMazes().getCount() == 0) {
+                                mAllMazesSolvedDialog.setMessage(
+                                        "Mad props!\nYou have solved all the mazes!\n" +
+                                                "Now go back and try to solve them in fewer steps! :)");
+                                mAllMazesSolvedDialog.show();
+                            } else {
+                                mMazeSolvedDialog.setMessage(
+                                        "You have solved maze "
+                                                + mMap.getName()
+                                                + " in " + mStepCount + " steps."
                                 );
-                            mMazeSolvedDialog.show();
+                                mMazeSolvedDialog.show();
+                            }
                         }
-                    }
-                    return;
+                        return;
 
-                case Messages.MSG_REACHED_WALL:
-                    vibrate(12);
-                    return;
+                    case Messages.MSG_REACHED_WALL:
+                        vibrate(12);
+                        return;
 
-                case Messages.MSG_RESTART:
-                    loadMap(mCurrentMap);
-                    return;
+                    case Messages.MSG_RESTART:
+                        loadMap(mCurrentMap);
+                        return;
 
-                case Messages.MSG_MAP_PREVIOUS:
-                case Messages.MSG_MAP_NEXT:
-                    switch (msg.what) {
-                    case (Messages.MSG_MAP_PREVIOUS):
-                        if (mCurrentMap == 0) {
-                            // Wrap around
-                            mMapToLoad = MapDesigns.designList.size() - 1;
+                    case Messages.MSG_MAP_PREVIOUS:
+                    case Messages.MSG_MAP_NEXT:
+                        switch (msg.what) {
+                            case (Messages.MSG_MAP_PREVIOUS):
+                                if (mCurrentMap == 0) {
+                                    // Wrap around
+                                    mMapToLoad = MapDesigns.designList.size() - 1;
+                                } else {
+                                    mMapToLoad = (mCurrentMap - 1) % MapDesigns.designList.size();
+                                }
+                                break;
+
+                            case (Messages.MSG_MAP_NEXT):
+                                mMapToLoad = (mCurrentMap + 1) % MapDesigns.designList.size();
+                                break;
                         }
-                        else {
-                            mMapToLoad = (mCurrentMap - 1) % MapDesigns.designList.size();
-                        }
-                        break;
 
-                    case (Messages.MSG_MAP_NEXT):
-                        mMapToLoad = (mCurrentMap + 1) % MapDesigns.designList.size();
-                        break;
-                    }
-
-                    loadMap(mMapToLoad);
-                    return;
+                        loadMap(mMapToLoad);
+                        return;
                 }
 
                 super.handleMessage(msg);
@@ -327,7 +326,7 @@ public class GameEngine {
     }
 
     public void toggleSensorEnabled() {
-        mSensorEnabled = ! mSensorEnabled;
+        mSensorEnabled = !mSensorEnabled;
     }
 
     public void vibrate(long milliseconds) {

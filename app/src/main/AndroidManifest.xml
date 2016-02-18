@@ -33,25 +33,33 @@
  */
 -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lecz.android.tiltmazes" android:versionCode="3" android:versionName="1.2">
+<manifest
+    package="com.lecz.android.tiltmazes"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-sdk android:minSdkVersion="9"  android:targetSdkVersion="21" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-    <application android:label="Amplitude Demo" android:icon="@drawable/tiltmazes_icon">
-        <activity android:name="TiltMazesActivity" android:launchMode="singleTask">
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@drawable/tiltmazes_icon"
+        android:label="Amplitude Demo"
+        tools:ignore="UnusedAttribute,GoogleAppIndexingWarning">
+        <activity
+            android:name="TiltMazesActivity"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
 
-        <activity android:name="SelectMazeActivity" android:excludeFromRecents="true"></activity>
+        <activity
+            android:name="SelectMazeActivity"
+            android:excludeFromRecents="true"/>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-
 </manifest>

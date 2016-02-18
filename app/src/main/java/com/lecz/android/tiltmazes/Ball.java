@@ -32,10 +32,10 @@
 
 package com.lecz.android.tiltmazes;
 
+import android.os.SystemClock;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
-import android.os.SystemClock;
 
 public class Ball {
     private GameEngine mEngine;
@@ -60,7 +60,7 @@ public class Ball {
     // Time
     private long mT1;
     private long mT2;
-    private static final int DT_TARGET = 1000/25; // Target time step (ms)
+    private static final int DT_TARGET = 1000 / 25; // Target time step (ms)
 
     // Timer to schedule simulation steps
     private Timer mTimer;
@@ -91,34 +91,34 @@ public class Ball {
 
     private boolean isValidMove(int x, int y, Direction dir) {
         switch (dir) {
-        case LEFT:
-            // Left wall
-            if (x <= 0) return false;
-            if ((mMap.getWalls(x, y) & Wall.LEFT) > 0 ||
-                (mMap.getWalls(x - 1, y) & Wall.RIGHT) > 0
-                ) return false;
-            break;
-        case RIGHT:
-            // Right wall
-            if (x >= mMap.getSizeX() - 1) return false;
-            if ((mMap.getWalls(x, y) & Wall.RIGHT) > 0 ||
-                (mMap.getWalls(x + 1, y) & Wall.LEFT) > 0
-                ) return false;
-            break;
-        case UP:
-            // Top wall
-            if (y <= 0) return false;
-            if ((mMap.getWalls(x, y) & Wall.TOP) > 0 ||
-                (mMap.getWalls(x, y - 1) & Wall.BOTTOM) > 0
-                ) return false;
-            break;
-        case DOWN:
-            // Bottom wall
-            if (y >= mMap.getSizeY() - 1) return false;
-            if ((mMap.getWalls(x, y) & Wall.BOTTOM) > 0 ||
-                (mMap.getWalls(x, y + 1) & Wall.TOP) > 0
-                ) return false;
-            break;
+            case LEFT:
+                // Left wall
+                if (x <= 0) return false;
+                if ((mMap.getWalls(x, y) & Wall.LEFT) > 0 ||
+                        (mMap.getWalls(x - 1, y) & Wall.RIGHT) > 0
+                        ) return false;
+                break;
+            case RIGHT:
+                // Right wall
+                if (x >= mMap.getSizeX() - 1) return false;
+                if ((mMap.getWalls(x, y) & Wall.RIGHT) > 0 ||
+                        (mMap.getWalls(x + 1, y) & Wall.LEFT) > 0
+                        ) return false;
+                break;
+            case UP:
+                // Top wall
+                if (y <= 0) return false;
+                if ((mMap.getWalls(x, y) & Wall.TOP) > 0 ||
+                        (mMap.getWalls(x, y - 1) & Wall.BOTTOM) > 0
+                        ) return false;
+                break;
+            case DOWN:
+                // Bottom wall
+                if (y >= mMap.getSizeY() - 1) return false;
+                if ((mMap.getWalls(x, y) & Wall.BOTTOM) > 0 ||
+                        (mMap.getWalls(x, y + 1) & Wall.TOP) > 0
+                        ) return false;
+                break;
         }
 
         return true;
@@ -130,10 +130,26 @@ public class Ball {
 
         // Set speed according to commanded direction
         switch (dir) {
-        case LEFT: { mVX = -1; mVY =  0; break;}
-        case RIGHT:{ mVX =  1; mVY =  0; break;}
-        case UP:   { mVX =  0; mVY = -1; break;}
-        case DOWN: { mVX =  0; mVY =  1; break;}
+            case LEFT: {
+                mVX = -1;
+                mVY = 0;
+                break;
+            }
+            case RIGHT: {
+                mVX = 1;
+                mVY = 0;
+                break;
+            }
+            case UP: {
+                mVX = 0;
+                mVY = -1;
+                break;
+            }
+            case DOWN: {
+                mVX = 0;
+                mVY = 1;
+                break;
+            }
         }
 
         // Calculate target position
@@ -177,7 +193,7 @@ public class Ball {
     private void doStep() {
         // Calculate elapsed time since last step
         mT2 = SystemClock.elapsedRealtime();
-        float dt = (float)(mT2 - mT1);
+        float dt = (float) (mT2 - mT1);
         mT1 = mT2;
 
         // Calculate next position
@@ -187,30 +203,30 @@ public class Ball {
         // Check if we have reached the target position
         boolean reachedTarget = false;
         switch (mRollDirection) {
-        case LEFT:
-            if (xNext <= 1f * mXTarget) {
-                xNext = mXTarget;
-                reachedTarget = true;
-            }
-            break;
-        case RIGHT:
-            if (xNext >= 1f * mXTarget) {
-                xNext = mXTarget;
-                reachedTarget = true;
-            }
-            break;
-        case UP:
-            if (yNext <= 1f * mYTarget) {
-                yNext = mYTarget;
-                reachedTarget = true;
-            }
-            break;
-        case DOWN:
-            if (yNext > 1f * mYTarget) {
-                yNext = mYTarget;
-                reachedTarget = true;
-            }
-            break;
+            case LEFT:
+                if (xNext <= 1f * mXTarget) {
+                    xNext = mXTarget;
+                    reachedTarget = true;
+                }
+                break;
+            case RIGHT:
+                if (xNext >= 1f * mXTarget) {
+                    xNext = mXTarget;
+                    reachedTarget = true;
+                }
+                break;
+            case UP:
+                if (yNext <= 1f * mYTarget) {
+                    yNext = mYTarget;
+                    reachedTarget = true;
+                }
+                break;
+            case DOWN:
+                if (yNext > 1f * mYTarget) {
+                    yNext = mYTarget;
+                    reachedTarget = true;
+                }
+                break;
         }
 
         mX = xNext;

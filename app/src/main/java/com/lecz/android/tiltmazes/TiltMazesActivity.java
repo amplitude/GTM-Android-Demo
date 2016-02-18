@@ -137,7 +137,7 @@ public class TiltMazesActivity extends Activity {
         mGameEngine.restoreState(
                 savedInstanceState,
                 getPreferences(MODE_PRIVATE).getBoolean("sensorenabled", true)
-            );
+        );
 
 
         // Create gesture detector to detect flings
@@ -149,17 +149,16 @@ public class TiltMazesActivity extends Activity {
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2,
-                    float velocityX, float velocityY) {
+                                   float velocityX, float velocityY) {
                 // Roll the ball in the direction of the fling
                 Direction mCommandedRollDirection = Direction.NONE;
 
                 if (Math.abs(velocityX) > Math.abs(velocityY)) {
-                    if (velocityX < 0)    mCommandedRollDirection = Direction.LEFT;
-                    else                mCommandedRollDirection = Direction.RIGHT;
-                }
-                else {
-                    if (velocityY < 0)    mCommandedRollDirection = Direction.UP;
-                    else                 mCommandedRollDirection = Direction.DOWN;
+                    if (velocityX < 0) mCommandedRollDirection = Direction.LEFT;
+                    else mCommandedRollDirection = Direction.RIGHT;
+                } else {
+                    if (velocityY < 0) mCommandedRollDirection = Direction.UP;
+                    else mCommandedRollDirection = Direction.DOWN;
                 }
 
                 if (mCommandedRollDirection != Direction.NONE) {
@@ -180,21 +179,21 @@ public class TiltMazesActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-        case KeyEvent.KEYCODE_DPAD_LEFT:
-            mGameEngine.rollBall(Direction.LEFT);
-            return true;
-        case KeyEvent.KEYCODE_DPAD_RIGHT:
-            mGameEngine.rollBall(Direction.RIGHT);
-            return true;
-        case KeyEvent.KEYCODE_DPAD_UP:
-            mGameEngine.rollBall(Direction.UP);
-            return true;
-        case KeyEvent.KEYCODE_DPAD_DOWN:
-            mGameEngine.rollBall(Direction.DOWN);
-            return true;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                mGameEngine.rollBall(Direction.LEFT);
+                return true;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                mGameEngine.rollBall(Direction.RIGHT);
+                return true;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                mGameEngine.rollBall(Direction.UP);
+                return true;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                mGameEngine.rollBall(Direction.DOWN);
+                return true;
 
-        default:
-            return super.onKeyDown(keyCode, event);
+            default:
+                return super.onKeyDown(keyCode, event);
         }
     }
 
@@ -214,7 +213,7 @@ public class TiltMazesActivity extends Activity {
         menu.findItem(MENU_MAP_NEXT).setIcon(getResources().getDrawable(android.R.drawable.ic_media_next));
         menu.findItem(MENU_SENSOR).setIcon(getResources().getDrawable(
                 mGameEngine.isSensorEnabled() ? android.R.drawable.button_onoff_indicator_on : android.R.drawable.button_onoff_indicator_off
-            ));
+        ));
         menu.findItem(MENU_SELECT_MAZE).setIcon(getResources().getDrawable(android.R.drawable.ic_menu_more));
         menu.findItem(MENU_ABOUT).setIcon(getResources().getDrawable(android.R.drawable.ic_menu_info_details));
 
@@ -224,33 +223,33 @@ public class TiltMazesActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case MENU_RESTART:
-            mGameEngine.sendEmptyMessage(Messages.MSG_RESTART);
-            return true;
+            case MENU_RESTART:
+                mGameEngine.sendEmptyMessage(Messages.MSG_RESTART);
+                return true;
 
-        case MENU_MAP_PREV:
-            mGameEngine.sendEmptyMessage(Messages.MSG_MAP_PREVIOUS);
-            return true;
+            case MENU_MAP_PREV:
+                mGameEngine.sendEmptyMessage(Messages.MSG_MAP_PREVIOUS);
+                return true;
 
-        case MENU_MAP_NEXT:
-            mGameEngine.sendEmptyMessage(Messages.MSG_MAP_NEXT);
-            return true;
+            case MENU_MAP_NEXT:
+                mGameEngine.sendEmptyMessage(Messages.MSG_MAP_NEXT);
+                return true;
 
-        case MENU_SENSOR:
-            mGameEngine.toggleSensorEnabled();
-            item.setIcon(getResources().getDrawable(
-                    mGameEngine.isSensorEnabled() ? android.R.drawable.button_onoff_indicator_on : android.R.drawable.button_onoff_indicator_off
+            case MENU_SENSOR:
+                mGameEngine.toggleSensorEnabled();
+                item.setIcon(getResources().getDrawable(
+                        mGameEngine.isSensorEnabled() ? android.R.drawable.button_onoff_indicator_on : android.R.drawable.button_onoff_indicator_off
                 ));
-            getPreferences(MODE_PRIVATE).edit().putBoolean("sensorenabled", mGameEngine.isSensorEnabled()).commit();
-            return true;
+                getPreferences(MODE_PRIVATE).edit().putBoolean("sensorenabled", mGameEngine.isSensorEnabled()).commit();
+                return true;
 
-        case MENU_SELECT_MAZE:
-            startActivityForResult(mSelectMazeIntent, REQUEST_SELECT_MAZE);
-            return true;
+            case MENU_SELECT_MAZE:
+                startActivityForResult(mSelectMazeIntent, REQUEST_SELECT_MAZE);
+                return true;
 
-        case MENU_ABOUT:
-            mAboutDialog.show();
-            return true;
+            case MENU_ABOUT:
+                mAboutDialog.show();
+                return true;
         }
 
         return false;
@@ -261,12 +260,12 @@ public class TiltMazesActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-        case (REQUEST_SELECT_MAZE):
-            if (resultCode == Activity.RESULT_OK) {
-                int selectedMaze = data.getIntExtra("selected_maze", 0);
-                mGameEngine.loadMap(selectedMaze);
-            }
-            break;
+            case (REQUEST_SELECT_MAZE):
+                if (resultCode == Activity.RESULT_OK) {
+                    int selectedMaze = data.getIntExtra("selected_maze", 0);
+                    mGameEngine.loadMap(selectedMaze);
+                }
+                break;
         }
     }
 
@@ -311,11 +310,11 @@ public class TiltMazesActivity extends Activity {
         mGameEngine.restoreState(
                 savedInstanceState,
                 getPreferences(MODE_PRIVATE).getBoolean("sensorenabled", true)
-            );
+        );
     }
 
     @Override
     protected void onDestroy() {
-         super.onDestroy();
+        super.onDestroy();
     }
 }

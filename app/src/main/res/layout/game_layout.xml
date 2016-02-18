@@ -35,116 +35,113 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <com.lecz.android.tiltmazes.MazeView
-               android:id="@+id/maze_view"
-               android:layout_width="fill_parent"
-               android:layout_height="1dip"
-               android:layout_weight="1"
-               android:scaleType="centerInside"
-               android:padding="10dip"
-               />
+        android:id="@+id/maze_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="10dip"
+        android:scaleType="centerInside"
+        />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         >
 
         <TextView
             android:id="@+id/maze_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
-            android:text="Maze: "
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:editable="false"
-            android:layout_gravity="left"
             android:gravity="left"
-            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="Maze: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
             />
 
         <TextView
             android:id="@+id/maze_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
-            android:text="-"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:editable="false"
-            android:layout_gravity="left"
             android:gravity="left"
-            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="-"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             />
 
         <TextView
             android:id="@+id/filler"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
-            android:text=""
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:editable="false"
             android:layout_weight="1.0"
-            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
             />
 
-           <TextView android:id="@+id/remaining_goals_text"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="1dip"
-               android:layout_marginRight="1dip"
-               android:text="Goals: "
-               android:singleLine="true"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:editable="false"
-               android:layout_gravity="right"
-               android:layout_width="wrap_content"
-               />
+        <TextView
+            android:id="@+id/remaining_goals_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip"
+            android:singleLine="true"
+            android:text="Goals: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
 
-           <TextView android:id="@+id/remaining_goals"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="1dip"
-               android:layout_marginRight="1dip"
-               android:text="-"
-               android:singleLine="true"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:editable="false"
-               android:layout_gravity="right"
-               android:layout_width="wrap_content"
-               android:ems="2"
-               />
+        <TextView
+            android:id="@+id/remaining_goals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip"
+            android:ems="2"
+            android:singleLine="true"
+            android:text="-"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
 
-           <TextView android:id="@+id/steps_text"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="1dip"
-               android:layout_marginRight="1dip"
-               android:text="Steps: "
-               android:singleLine="true"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:editable="false"
-               android:layout_gravity="right"
-               android:layout_width="wrap_content"
-               />
+        <TextView
+            android:id="@+id/steps_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip"
+            android:singleLine="true"
+            android:text="Steps: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
 
-           <TextView android:id="@+id/steps"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="1dip"
-               android:layout_marginRight="1dip"
-               android:text="-"
-               android:singleLine="true"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:editable="false"
-               android:layout_gravity="right"
-               android:layout_width="wrap_content"
-               android:ems="2"
-               />
+        <TextView
+            android:id="@+id/steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip"
+            android:ems="2"
+            android:singleLine="true"
+            android:text="-"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
     </LinearLayout>
 </LinearLayout>

@@ -34,14 +34,13 @@
 -->
 
 <resources>
+    <color name="ball_shadow">#252535</color>
+    <color name="ball_highlight">#F0F0FF</color>
 
-<color name="ball_shadow">#252535</color>
-<color name="ball_highlight">#F0F0FF</color>
+    <color name="wall">#B0A5A5</color>
 
-<color name="wall">#B0A5A5</color>
+    <color name="goal_shadow">#601050</color>
+    <color name="goal_highlight">#FFC0F0</color>
 
-<color name="goal_shadow">#601050</color>
-<color name="goal_highlight">#FFC0F0</color>
-
-<color name="background">#000000</color>
+    <color name="background">#000000</color>
 </resources>

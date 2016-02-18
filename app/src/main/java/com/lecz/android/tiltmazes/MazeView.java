@@ -32,21 +32,21 @@
 
 package com.lecz.android.tiltmazes;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import android.view.View;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
 import android.graphics.Paint.Style;
-import android.graphics.Shader.TileMode;
 import android.graphics.RadialGradient;
+import android.graphics.Shader.TileMode;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.view.View;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MazeView extends View {
