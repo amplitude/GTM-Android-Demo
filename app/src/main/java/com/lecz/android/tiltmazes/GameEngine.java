@@ -43,8 +43,8 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.widget.TextView;
 
-import com.amplitude.api.Amplitude;
-import com.amplitude.api.Identify;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -111,7 +111,7 @@ public class GameEngine {
     };
 
 
-    public GameEngine(Context context) {
+    public GameEngine(final Context context) {
         // Open maze database
         mDB = new TiltMazesDBAdapter(context).open();
         mCurrentMap = mDB.getFirstUnsolved();
@@ -181,7 +181,7 @@ public class GameEngine {
                                 userProperties.put("Mazes Completed", mDB.solvedMazes().getCount());
                             } catch (JSONException exception) {
                             }
-                            Amplitude.getInstance().setUserProperties(userProperties);
+//                            Amplitude.getInstance().setUserProperties(userProperties);
 
                             // Track the maze completion in amplitude
                             JSONObject eventProperties = new JSONObject();
@@ -191,11 +191,11 @@ public class GameEngine {
                             } catch (JSONException exception) {
                             }
 
-                            Amplitude.getInstance().logEvent("Maze Completed", eventProperties);
-                            Amplitude.getInstance().identify(new Identify().add("total steps", mStepCount));
-                            Amplitude.getInstance().identify(new Identify().add("mazes completed", 1));
-                            Long tsLong = System.currentTimeMillis() / 1000;
-                            Amplitude.getInstance().identify(new Identify().setOnce("first maze completed time", tsLong));
+                            DataLayer dataLayer = TagManager.getInstance(context).getDataLayer();
+                            dataLayer.pushEvent(
+                                "logEvent",
+                                DataLayer.mapOf("eventType", "Maze Completed", "eventProperties", eventProperties.toString())
+                            );
 
                             if (mDB.unsolvedMazes().getCount() == 0) {
                                 mAllMazesSolvedDialog.setMessage(

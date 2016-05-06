@@ -51,6 +51,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplitude.api.Amplitude;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tagmanager.Container;
+import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.DataLayer;
+import com.google.android.gms.tagmanager.TagManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.TimeUnit;
 
 public class TiltMazesActivity extends Activity {
     protected PowerManager.WakeLock mWakeLock;
@@ -77,13 +88,66 @@ public class TiltMazesActivity extends Activity {
     private GestureDetector mGestureDetector;
     private GameEngine mGameEngine;
 
+    // Google Tag Manager
+    private static final long TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS = 500;
+    private static final String CONTAINER_ID = "GTM-TJJN2L";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Amplitude.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6");
+        Amplitude.getInstance().initialize(this, "93e0bbbebc27870cee83fb7a1f68d83c");
         Amplitude.getInstance().enableForegroundTracking(getApplication()).trackSessionEvents(true);
         Amplitude.getInstance().setLogLevel(Log.VERBOSE);
+
+        // initialize GTM
+        final TagManager tagManger = TagManager.getInstance(this);
+        tagManger.setVerboseLoggingEnabled(true);
+        PendingResult<ContainerHolder> pending = tagManger.loadContainerPreferNonDefault(
+                CONTAINER_ID, R.raw.gtm_tjjn2l
+        );
+
+        // The onResult method will be called as soon as one of the following happens:
+        //    1. a saved container is loaded
+        //    2. if there is no saved container, a network container is loaded
+        //    3. the 2-second timeout occurs
+        pending.setResultCallback(new ResultCallback<ContainerHolder>() {
+            @Override
+            public void onResult(ContainerHolder containerHolder) {
+                containerHolder.refresh();
+                ContainerHolderSingleton.setContainerHolder(containerHolder);
+                Container container = containerHolder.getContainer();
+                if (!containerHolder.getStatus().isSuccess()) {
+                    Log.e("TiltMazes", "Failed to load GTM container");
+                    return;
+                }
+                Log.i("TiltMazes", "LOADED GTM CONTAINER");
+                container.registerFunctionCallTagCallback(
+                        AmplitudeGTMHandler.AmplitudeGTMLogEventTag,
+                        AmplitudeGTMHandler.getInstance()
+                );
+                container.registerFunctionCallTagCallback(
+                    AmplitudeGTMHandler.AmplitudeGTMSetUserIdTag,
+                    AmplitudeGTMHandler.getInstance()
+                );
+                container.registerFunctionCallTagCallback(
+                        AmplitudeGTMHandler.AmplitudeGTMSetUserPropertiesTag,
+                        AmplitudeGTMHandler.getInstance()
+                );
+                DataLayer dataLayer = tagManger.getDataLayer();
+                dataLayer.pushEvent("setUserId", DataLayer.mapOf("userId", "jane@gmail.com"));
+
+                JSONObject userProperties = new JSONObject();
+                try {
+                    userProperties.put("color", "gray").put("city", "Boston");
+                } catch (JSONException e) {}
+                dataLayer.pushEvent(
+                    "setUserProperties",
+                    DataLayer.mapOf("userProperties", userProperties.toString())
+                );
+            }
+        }, TIMEOUT_FOR_CONTAINER_OPEN_MILLISECONDS, TimeUnit.MILLISECONDS);
+
 
         final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TiltMazes");
@@ -291,7 +355,9 @@ public class TiltMazesActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        Amplitude.getInstance().logEvent("app resumed");
+//        Amplitude.getInstance().logEvent("app resumed");
+        DataLayer dataLayer = TagManager.getInstance(this).getDataLayer();
+        dataLayer.pushEvent("logEvent", DataLayer.mapOf("eventType", "app resumed"));
 
         mGameEngine.registerListener();
         mWakeLock.acquire();
