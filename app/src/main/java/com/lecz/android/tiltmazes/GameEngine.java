@@ -175,14 +175,6 @@ public class GameEngine {
                             // Solved!
                             mDB.updateMaze(mCurrentMap, mStepCount);
 
-                            // Update the user properties with number of mazes completed.
-                            JSONObject userProperties = new JSONObject();
-                            try {
-                                userProperties.put("Mazes Completed", mDB.solvedMazes().getCount());
-                            } catch (JSONException exception) {
-                            }
-//                            Amplitude.getInstance().setUserProperties(userProperties);
-
                             // Track the maze completion in amplitude
                             JSONObject eventProperties = new JSONObject();
                             try {
