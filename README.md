@@ -16,22 +16,22 @@ Triggers
 
 Tags:
 logEvent
-    * type: Function Call
-    * Function Name: logEvent
-    * Fire on trigger: Event equals 'logEvent'
-    * arguments: eventType = {{eventType}}, eventProperties = {{eventProperties}}
+* type: Function Call
+* Function Name: logEvent
+* Fire on trigger: Event equals 'logEvent'
+* arguments: eventType = {{eventType}}, eventProperties = {{eventProperties}}
 
 setUserId
-    * type: Function Call
-    * Function Name: setUserId
-    * Fire on trigger: Event equals 'setUserId'
-    * arguments: userId = {{userId}}
+* type: Function Call
+* Function Name: setUserId
+* Fire on trigger: Event equals 'setUserId'
+* arguments: userId = {{userId}}
 
 setUserProperties
-    * type: Function Call
-    * Function Name: setUserProperties
-    * Fire on trigger: Event equals 'setUserProperties'
-    * arguments: userProperties = {{userProperties}}
+* type: Function Call
+* Function Name: setUserProperties
+* Fire on trigger: Event equals 'setUserProperties'
+* arguments: userProperties = {{userProperties}}
 
 The idea is that when you want to log an event, you push a "logEvent" event to the data layer with the variables for eventType and eventProperties -> activates the logEvent trigger -> activates the logEvent tag -> calls the function logEvent in the AmplitudeGTMHandler -> calls our SDK's logEvent.
 
